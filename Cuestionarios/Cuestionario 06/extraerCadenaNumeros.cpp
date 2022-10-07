@@ -17,21 +17,18 @@ funcion logico esNumero(caracter n){
 	finSegun
 }
 funcion cadena extraerCadenaNumeros(cadena str){
-	caracter teclaActual, signo = 'ñ';
 	cadena cadenaNumeros = "";
 	
-	iterar
-		leeTecla(teclaActual);
-		
-		si((teclaActual ES '+' O teclaActual ES '-') Y longitud(cadenaNumeros) ES 0) entonces
-			signo = teclaActual;
-			cadenaNumeros += signo;
-		finSi
-		
-		si(esNumero(teclaActual)) entonces
-			cadenaNumeros += teclaActual;
-		finSi
-	finIterar
+	entero indice;
+	variarMas1(indice,0,longitud(str)-1)
+		caracter actual = str[indice];
+		si((actual ES '+' O actual ES '-')  Y longitud(cadenaNumeros) ES 0) cadenaNumeros += actual;
+		si(esNumero(actual)) entonces
+			cadenaNumeros += actual;
+			si(longitud(cadenaNumeros) ES 5) sale;
+		finSi;
+	finVariar
+	mostrar << cadenaNumeros << salto;
 	regresa(cadenaNumeros);
 }
 	
@@ -39,4 +36,28 @@ funcion entero cadenaAEntero(cadena str){
 	regresa(aEntero(extraerCadenaNumeros(str)));
 }
 	
+	
+funcion cadena extraerCadenaNumerosReal(cadena str){
+	cadena cadenaNumeros = "";
+	logico bandera = FALSO;
+	
+	entero indice;
+	variarMas1(indice,0,longitud(str)-1)
+		caracter actual = str[indice];
+	si((actual ES '+' O actual ES '-')  Y longitud(cadenaNumeros) ES 0) cadenaNumeros += actual;
+	si(bandera ES FALSO Y actual ES '.') entonces 
+		cadenaNumeros += actual;
+		bandera = VERDADERO;
+	finSi
+	si(esNumero(actual)) entonces
+		cadenaNumeros += actual;
+	finSi;
+	finVariar
+		mostrar << cadenaNumeros << salto;
+	regresa(cadenaNumeros);
+}
+	
+	funcion entero cadenaAReal(cadena str){
+		regresa(aEntero(extraerCadenaNumerosReal(str)));
+	}
 	
