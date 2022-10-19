@@ -1,0 +1,8 @@
+V1
+Vector de 9 valores:
+   1  2  3  4    5   6    7  8
+  -9
+V2
+Vector de 9 valores:
+     1   2   3   4  5  6   7     -8
+  -9
