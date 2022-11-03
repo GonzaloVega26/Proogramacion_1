@@ -1,0 +1,4 @@
+A: Vector de 11 valores
+3 4 -6 6 -6 -10 -1 -8 4 -6 -3
+B: Vector de 9 valores
+-6 -2 -4 -5 1 6 3 4 5

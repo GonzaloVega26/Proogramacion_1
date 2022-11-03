@@ -62,21 +62,17 @@ funcion real sumarElementosVector(vectorDin(real) vec){
 		
 	regresa(sumatoria);
 }
-funcion vectorDin(real) interseccionDeVectores(vectorDin(real) A, vectorDin(real) B){
-	vectorDin(real) vectorDiferencia; //Vector nuevo para agregar los valores de la diferencia
-	logico bandera = FALSO; //Booleano para ver si esta repetido y sino lo está lo agrego al vector
-	entero i,j;
-	variarMas1(i,0,tamanio(A)-1)
-		variarMas1(j,0,tamanio(B)-1)
-				si(A[i] ES B[j]) entonces // si el elemento está en ambos conjuntos cambio la bandera a verdadero, osea está repetido
-					bandera = VERDADERO;
-			finSi
-		finVariar
-		si(bandera) agregaEleVDin(vectorDiferencia,A[i]); // si la bandera quedo en VERDADERO despues de toda la iteracion
-			//, osea está repetido agrega el valor al nuevo vector
-		bandera = FALSO; // reinicio la bandera
+funcion vectorDin(real) unionDeVectores(vectorDin(real) A, vectorDin(real) B){
+	vectorDin(real) vectorUnion = A; //Vector nuevo para agregar los valores de la diferencia
+	entero i;
+	
+	variarMas1(i,0,tamanio(B)-1)
+			agregaEleVDin(vectorUnion,B[i]); // Agregamos todo B a A(vectorUnion)
 	finVariar
-	regresa(vectorDiferencia);
+		
+
+	vectorUnion = eliminarNumerosDuplicados(vectorUnion);
+	regresa(vectorUnion);
 }
 principal                                                       // Unidad de programa principal
 	
@@ -102,8 +98,8 @@ mostrarVector(conjuntoAsinDups);
 mostrar << "sin duplicados B" << salto;
 mostrarVector(conjuntoBsinDups);
 
-vectorDin(real) C = interseccionDeVectores(conjuntoAsinDups,conjuntoBsinDups);
-mostrar << "VECTOR INTERSECCION" << salto;
+vectorDin(real) C = unionDeVectores(conjuntoAsinDups,conjuntoBsinDups);
+mostrar << "VECTOR UNION" << salto;
 mostrarVector(C);
 
 mostrar << "RESULTADO" << sumarElementosVector(C) << salto;
