@@ -14,6 +14,6 @@ publico:
 	funcion entero getId();
 	procedimiento setPisoActual(entero);
 	procedimiento setPisosRecorridos(entero);
-	
+	estatico procedimiento prueba(Ascensor);
 };
 #endif

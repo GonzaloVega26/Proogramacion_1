@@ -48,8 +48,7 @@ funcion Ascensor compararPisosRecorridos(Ascensor asc1, Ascensor asc2){
 	
 procedimiento mandarAscensor(vectorDin(Ascensor) porRef listaAscensores, entero origen,entero destino){
 	//Primero medimos la distancia hacia el origen de la llamada del ascensor de todos los ascensores
-	entero menorDistancia = cantidadPisos; //Valor Basura: la distancia como maximo es ir desde el 0 hasta la cantidad de pisos, 
-	//le sumo uno porque si para asegurarme
+	entero menorDistancia = cantidadPisos; //Valor Basura: la distancia como maximo es ir desde el 0 hasta ultimo piso  
 	Ascensor ascensorCercano = listaAscensores[0];
 	paraCada(ascensor, listaAscensores)
 		entero distancia = distanciaAlPiso(ascensor, origen);
@@ -63,8 +62,11 @@ procedimiento mandarAscensor(vectorDin(Ascensor) porRef listaAscensores, entero 
 		finParaCada
 		
 		//Terminado elbucle ya tenemos al mejor ascensor posible 
+		entero distanciaTotal = distanciaAlPiso(listaAscensores[ascensorCercano.getId()-1], origen);
 	listaAscensores[ascensorCercano.getId()-1].setPisoActual(destino);//Cambio la posicion del ascensor
-	listaAscensores[ascensorCercano.getId()-1].setPisosRecorridos(listaAscensores[ascensorCercano.getId()-1].getPisosRecorridos()+fabs(origen-destino)); // Le sumo la cantidad de pisos recorridos
+	listaAscensores[ascensorCercano.getId()-1].setPisosRecorridos(
+		listaAscensores[ascensorCercano.getId()-1].getPisosRecorridos()+fabs(origen-destino) + 
+		distanciaTotal); // Le sumo la cantidad de pisos recorridos
 }
 
 funcion entero mostrarIdAscensorConMasPisosRecorridos(vectorDin(Ascensor) listaAscensores){
@@ -110,7 +112,13 @@ iterar
 	   Y comprobarDestinoOrigen(llamadaDestino,llamadaOrigen) )
 		mandarAscensor(listaAscensores,llamadaOrigen,llamadaDestino);
 finIterar
-	mostrar << "El ascensor que mas recorrio es: " << mostrarIdAscensorConMasPisosRecorridos(listaAscensores) << salto;
+	entero id = mostrarIdAscensorConMasPisosRecorridos(listaAscensores);
+Ascensor asc = listaAscensores[id-1];
+	mostrar << "El ascensor que mas recorrio es: "<< salto;
+	asc.mostrarAscensor() ;
+	
+	mostrar << salto;
+	Ascensor::prueba(asc);
 pausa;                                                          // Pausa antes de finalizar. 
 finPrincipal                                                    // Fin de unidad de programa principal
 

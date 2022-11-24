@@ -1,9 +1,12 @@
 #include <program1.h>
 #include "Ascensor.h"
-
+procedimiento Ascensor::prueba(Ascensor asc){
+	mostrar << "ASD"<< tabulado << asc.getPisoActual();
+}
 procedimiento Ascensor::mostrarAscensor(){
-	mostrar << id << salto;
-	mostrar << pisoActual << salto;
+	mostrar << "Id: " << id << salto;
+	mostrar << "Piso Actual: " << pisoActual << salto;
+	mostrar << "Pisos Recorridos: " << pisoActual << salto;
 }
 Ascensor::Ascensor(entero id){
 	esto->id= id; //Al escribirlo asi es como en java, usando el mismo nombre de variables
