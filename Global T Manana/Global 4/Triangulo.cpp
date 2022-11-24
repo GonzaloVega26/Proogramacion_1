@@ -36,9 +36,9 @@ funcion real Triangulo::calcularArea(){
 	regresa(raiz2(s*(s-a)*(s-b)*(s-c)));
 	
 }
-procedimiento Triangulo::setArea(real area){
-	esto->area = area;
-}
+//procedimiento Triangulo::setArea(real area){
+//	esto->area = area;
+//}
 funcion real Triangulo::calcularPerimetro(){
 	regresa(esto->p1.distanciaEntrePunto(p2) + esto->p1.distanciaEntrePunto(p3) + esto->p2.distanciaEntrePunto(p3) );
 }
@@ -49,4 +49,14 @@ procedimiento Triangulo::setPerimetro(real perimetro){
 funcion logico Triangulo::operador ES(Triangulo triangulo){
 	si(esto->p1 ES triangulo.getP1() Y esto->p2 ES triangulo.getP2() Y esto->p3 ES triangulo.getP3()) regresa(VERDADERO);
 	regresa(FALSO);
+}
+	
+funcion cadena Triangulo::toString(){
+	regresa("Punto \n" + esto->p1.toString() + "\n" +
+			esto->p2.toString() + "\n" +
+			esto->p3.toString()) + "\n";
+}
+
+funcion real Triangulo::getPerimetro(){
+	regresa(esto->perimetro);
 }
